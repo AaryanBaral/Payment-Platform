@@ -1,7 +1,7 @@
 
 using PaymentPlatform.Domain.Common;
 
-namespace PaymentPlatform.Domain.Merchants
+namespace PaymentPlatform.Domain.Merchant
 {
     // A merchant that belongs to a tenant and has a revenue share.
     public class Merchant : Entity

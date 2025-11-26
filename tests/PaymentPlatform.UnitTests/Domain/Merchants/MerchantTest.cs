@@ -1,8 +1,8 @@
 
 
-using PaymentPlatform.Domain.Merchants;
+using PaymentPlatform.Domain.Merchant;
 
-namespace PaymentPlatform.UnitTests.Domain.merchant
+namespace PaymentPlatform.UnitTests.Domain.Merchants
 {
     public class MerchantTest
     {
