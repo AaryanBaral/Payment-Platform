@@ -8,7 +8,7 @@ namespace PaymentPlatform.Domain.Common
 
         public static Percentage From(decimal value)
         {
-            if (value < 0 || value > 100)
+            if (value <= 0 || value >= 100)
             {
                 throw new ArgumentException("Percentage must be between 0 and 100 (exclusive).");
             }

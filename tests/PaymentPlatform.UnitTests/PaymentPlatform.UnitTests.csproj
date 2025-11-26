@@ -20,4 +20,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PaymentPlatform.Domain\PaymentPlatform.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
