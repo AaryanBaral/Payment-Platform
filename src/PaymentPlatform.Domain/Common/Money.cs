@@ -2,14 +2,17 @@ namespace PaymentPlatform.Domain.Common
 {
     public class Money : ValueObject
     {
-        public string Currency { get; protected set; }
+        public string Currency { get; protected set; } = default!;
         public decimal Amount { get; protected set; }
         protected override IEnumerable<object?> GetEqualityComponents()
         {
             yield return Amount;
             yield return Currency.ToUpperInvariant();
         }
-
+        private Money()
+        {
+            
+        }
         private Money(decimal amount, string currency)
         {
             Amount = amount;

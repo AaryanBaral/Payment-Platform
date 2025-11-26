@@ -2,9 +2,16 @@
 
 namespace PaymentPlatform.Domain.Common
 {
-    public class Percentage(decimal value) : ValueObject
+    public class Percentage : ValueObject
     {
-        public decimal Value { get; } = value;
+        public decimal Value { get; } 
+
+        private Percentage(){}
+
+        private Percentage(decimal value)
+        {
+            Value = value;
+        }
 
         public static Percentage From(decimal value)
         {

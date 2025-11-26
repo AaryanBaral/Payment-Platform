@@ -1,0 +1,12 @@
+first create a docs, specify the invarients and other stuffs
+then create test cases for domain entities, TDD(test driven development) approach for this
+make entities fulfilling the sucees for tst case.
+
+then come to application layer, create a command(the Dto), the interface for repo and service, the result generic and 
+result type dto for each domain, with a handler that handles the buisness logic
+
+the create a app db context, a configuration folder having different files for sifferent entity configurations, 
+
+
+to migrate use "dotnet ef migrations add InitialCreate -p src/PaymentPlatform.Infrastructure -s src/PaymentPlatform.Api"
+

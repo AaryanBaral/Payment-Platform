@@ -9,5 +9,6 @@ namespace PaymentPlatform.Application.Presistence
     public interface ITenantRepository
     {
         Task<Tenant?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<Tenant>> GetAll(CancellationToken cancellationToken);
     }
 }
