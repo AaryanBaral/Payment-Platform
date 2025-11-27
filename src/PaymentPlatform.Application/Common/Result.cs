@@ -37,4 +37,5 @@ namespace PaymentPlatform.Application.Common
 
         public static new Result<T> Failure(string error) => new Result<T>(false, default, error);
     }
+
 }
