@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PaymentPlatform.Api.Models.Payouts;
 using PaymentPlatform.Application.Common;
 using PaymentPlatform.Application.Payouts.Commands.GeneratePayoutRequest;
+using PaymentPlatform.Application.Payouts.Commands.RejectPayout;
 
 namespace PaymentPlatform.Api.Controllers
 {
@@ -10,10 +11,13 @@ namespace PaymentPlatform.Api.Controllers
     public class PayoutsController : ControllerBase
     {
         private readonly GeneratePayoutRequestHandler _generatePayoutRequestHandler;
+        private readonly RejectPayoutHandler _rejectPayoutHandler;
 
-        public PayoutsController(GeneratePayoutRequestHandler generatePayoutRequestHandler)
+
+        public PayoutsController(GeneratePayoutRequestHandler generatePayoutRequestHandler, RejectPayoutHandler rejectPayoutHandler)
         {
             _generatePayoutRequestHandler = generatePayoutRequestHandler;
+            _rejectPayoutHandler = rejectPayoutHandler;
         }
 
         [HttpPost("request")]
@@ -53,6 +57,42 @@ namespace PaymentPlatform.Api.Controllers
                 Amount = payload.Amount,
                 Currency = payload.Currency,
                 Status = payload.Status
+            };
+
+            return Ok(response);
+        }
+
+        [HttpPost("{payoutId:guid}/reject")]
+        public async Task<IActionResult> RejectAsync(
+    Guid payoutId,
+    [FromBody] RejectPayoutRequestDto dto,
+    CancellationToken cancellationToken)
+        {
+            var command = new RejectPayoutCommand(
+                dto.TenantId,
+                payoutId,
+                dto.RejectedByUserId,
+                dto.RejectedAtUtc,
+                dto.Notes);
+
+            var result = await _rejectPayoutHandler.HandleAsync(command, cancellationToken);
+
+            if (result.IsFailure)
+            {
+                return BadRequest(new { error = result.Error });
+            }
+
+            var payload = result.Value;
+
+            var response = new RejectPayoutResponseDto
+            {
+                PayoutId = payload.PayoutId,
+                TenantId = payload.TenantId,
+                MerchantId = payload.MerchantId,
+                Amount = payload.Amount,
+                Currency = payload.Currency,
+                Status = payload.Status,
+                Notes = payload.Notes
             };
 
             return Ok(response);

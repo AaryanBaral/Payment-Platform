@@ -71,3 +71,14 @@ namespace PaymentPlatform.Application.Payments.Commands.CreatePayment
         }
     }
 }
+
+/*
+{
+    "paymentId": "ba6aa9e0-7dc8-4a0d-9a45-d3a7f99efca4",
+    "tenantId": "11111111-1111-1111-1111-111111111111",
+    "merchantId": "22222222-2222-2222-2222-222222222222",
+    "amount": 2000.00,
+    "currency": "NPR",
+    "status": "Pending"
+}
+*/

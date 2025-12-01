@@ -1,1 +1,1 @@
-select * from LedgerEntries;
+select * from Payouts;

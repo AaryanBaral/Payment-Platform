@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PaymentPlatform.Application.Payments.Commands.CreatePayment;
 using PaymentPlatform.Application.Payouts.Commands.GeneratePayoutRequest;
+using PaymentPlatform.Application.Payouts.Commands.RejectPayout;
 using PaymentPlatform.Application.Payouts.Services;
 using PaymentPlatform.Application.Presistence;
 using PaymentPlatform.Infrastructure.Payouts;
@@ -21,6 +22,7 @@ builder.Services.AddScoped<ILedgerEntryRepository, LedgerEntryRepository>();
 builder.Services.AddScoped<CreatePaymentHandler>();
 builder.Services.AddScoped<MarkPaymentSucceededHandler>();
 builder.Services.AddScoped<GeneratePayoutRequestHandler>();
+builder.Services.AddScoped<RejectPayoutHandler>();
 
 
 builder.Services.AddScoped<IMerchantBalanceService, MerchantBalanceService>();
