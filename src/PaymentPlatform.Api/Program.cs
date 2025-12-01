@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PaymentPlatform.Application.Payments.Commands.CreatePayment;
 using PaymentPlatform.Application.Payouts.Commands.GeneratePayoutRequest;
 using PaymentPlatform.Application.Payouts.Services;
 using PaymentPlatform.Application.Presistence;
@@ -17,6 +18,10 @@ builder.Services.AddScoped<IMerchantRepository, MerchantRepository>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IPayoutRepository, PayoutRepository>();
 builder.Services.AddScoped<ILedgerEntryRepository, LedgerEntryRepository>();
+builder.Services.AddScoped<CreatePaymentHandler>();
+builder.Services.AddScoped<MarkPaymentSucceededHandler>();
+builder.Services.AddScoped<GeneratePayoutRequestHandler>();
+
 
 builder.Services.AddScoped<IMerchantBalanceService, MerchantBalanceService>();
 builder.Services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<AppDbContext>());
